@@ -1,10 +1,16 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Param, Post } from '@nestjs/common';
 
 @Controller('cats')
 export class CatsController {
   @Post()
   create(): string {
     return 'This action adds a new cat';
+  }
+
+  @Get(':id')
+  findOne(@Param() params): string {
+    console.log(params.id);
+    return `This action returns a #${params.id} cat`;
   }
 
   @Get()
