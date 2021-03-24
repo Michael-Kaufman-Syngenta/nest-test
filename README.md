@@ -2,14 +2,16 @@
 
 Use `npm run start:dev` to start developing in watch mode.
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
+## Generating new CRUD endpoint
 
 ```bash
-$ npm install
+$ nest g resource [name]
+```
+
+## Generating new controller
+
+```bash
+$ nest g controller [name]
 ```
 
 ## Running the app
@@ -36,16 +38,4 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
-```
-
-## Generating new CRUD endpoint
-
-```bash
-$ nest g resource [name]
-```
-
-## Generating new controller
-
-```bash
-$ nest g controller [name]
 ```
