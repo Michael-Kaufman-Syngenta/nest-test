@@ -1,4 +1,4 @@
-import { HttpService, Injectable } from '@nestjs/common';
+import { HttpService, Injectable, Request } from '@nestjs/common';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
 import { UpdateOrganizationDto } from './dto/update-organization.dto';
 
@@ -12,17 +12,31 @@ export class OrganizationsService {
     return 'This action adds a new organization';
   }
 
-  findAll() {
-    const bearerToken = process.env.BEARER_TOKEN;
+  findAll(@Request() req) {
+    const headers = req.headers;
+
+    console.log(headers);
 
     return this.httpService
       .get('https://api.staging.base.cropwise.com/v2/orgs', {
-        headers: {
-          Authorization: `Bearer ${bearerToken}`,
-        },
+        headers,
       })
       .pipe(map((response) => response.data));
   }
+
+  // Below is implementation using env variable
+
+  // findAll() {
+  //   const bearerToken = process.env.BEARER_TOKEN;
+
+  //   return this.httpService
+  //     .get('https://api.staging.base.cropwise.com/v2/orgs', {
+  //       headers: {
+  //         Authorization: `Bearer ${bearerToken}`,
+  //       },
+  //     })
+  //     .pipe(map((response) => response.data));
+  // }
 
   findOne(id: number) {
     return `This action returns a #${id} organization`;
