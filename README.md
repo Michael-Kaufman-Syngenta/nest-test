@@ -1,4 +1,4 @@
-## Getting Started
+# Getting Started
 
 Use `npm run start:dev` to start developing in watch mode.
 

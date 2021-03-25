@@ -4,9 +4,10 @@ import { AppService } from './app.service';
 import { CatsController } from './cats/cats.controller';
 import { ExamplesModule } from './examples/examples.module';
 import { CatsService } from './cats/cats.service';
+import { OrganizationsModule } from './organizations/organizations.module';
 
 @Module({
-  imports: [ExamplesModule],
+  imports: [ExamplesModule, OrganizationsModule],
   controllers: [AppController, CatsController],
   providers: [AppService, CatsService],
 })
