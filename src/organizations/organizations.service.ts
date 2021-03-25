@@ -2,6 +2,8 @@ import { HttpService, Injectable } from '@nestjs/common';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
 import { UpdateOrganizationDto } from './dto/update-organization.dto';
 
+import { map } from 'rxjs/operators';
+
 @Injectable()
 export class OrganizationsService {
   constructor(private httpService: HttpService) {}
@@ -11,10 +13,15 @@ export class OrganizationsService {
   }
 
   findAll() {
-    // return `This action returns all organizations`;
-    return this.httpService.get(
-      'https://api.staging.base.cropwise.com/v2/orgs',
-    );
+    const bearerToken = process.env.BEARER_TOKEN;
+
+    return this.httpService
+      .get('https://api.staging.base.cropwise.com/v2/orgs', {
+        headers: {
+          Authorization: `Bearer ${bearerToken}`,
+        },
+      })
+      .pipe(map((response) => response.data));
   }
 
   findOne(id: number) {
